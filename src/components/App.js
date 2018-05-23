@@ -27,21 +27,21 @@ class App extends Component {
     return {};
   };
 
-  addNewTaskHandler = (newTaskName) => {
-    let newTask = {
-      _id: this.state.lastTaskID + 1,
-      name: newTaskName,
-      comments: [],
-    };
-    
-    this.setState({
-      currentTaskID: newTask._id,
-      tasks: [...this.state.tasks, newTask],
-      lastTaskID: newTask._id,
-    });
+  // addNewTaskHandler = (newTaskName) => {
+  //   let newTask = {
+  //     _id: this.state.lastTaskID + 1,
+  //     name: newTaskName,
+  //     comments: [],
+  //   };
 
-    //CALL STORAGE
-  }
+  //   this.setState({
+  //     currentTaskID: newTask._id,
+  //     tasks: [...this.state.tasks, newTask],
+  //     lastTaskID: newTask._id,
+  //   });
+
+  //   //CALL STORAGE
+  // }
 
   deleteTaskHandler = (taskID) => {
     let taskToDelete = this.fetchTask(taskID);
@@ -83,28 +83,29 @@ class App extends Component {
   }
 
   render() {
-    return ( <div className = "App">
-                <div className = "DairyCover">
-                  <div className = "App-name">
-                      dairy app
-                  </div> 
-                  <div className = "App-slogan">
-                      Comment with no sense
+    return (<div className="App">
+      <div className="DairyCover">
+        <div className="App-name">
+          dairy app
                   </div>
-                 </div>
-                <div className = "DairyContent">
-                  <TaskListView tasks={this.state.tasks}
-                      taskID={this.state.currentTaskID}
-                      onAdd={this.addNewTaskHandler}
-                      onDelete={this.deleteTaskHandler}
-                      onSelect={this.selectTaskHandler}/> 
-                  <CommentListView comments={this.fetchTask(this.state.currentTaskID).comments || []}
-                      onAdd={this.addNewCommentHandler}
-                      taskIndex={this.state.tasks.indexOf(this.fetchTask(this.state.currentTaskID))}/> 
-                </div>
-            </div>
-          );
-    }
+        <div className="App-slogan">
+          Comment with no sense
+                  </div>
+      </div>
+      <div className="DairyContent">
+        <TaskListView tasks={this.state.tasks}
+          // taskID={this.state.currentTaskID}
+          // onAdd={this.addNewTaskHandler}
+          // onDelete={this.deleteTaskHandler}
+          // onSelect={this.selectTaskHandler} 
+          />
+        <CommentListView comments={this.fetchTask(this.state.currentTaskID).comments || []}
+          onAdd={this.addNewCommentHandler}
+          taskIndex={this.state.tasks.indexOf(this.fetchTask(this.state.currentTaskID))} />
+      </div>
+    </div>
+    );
+  }
 }
 
 export default App;

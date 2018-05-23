@@ -4,6 +4,13 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
+// add redux logic
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+
+let reduxStore = createStore(rootReducer)
+
 let localStorage, inputData = {};
 const STORAGE_NAME = 'storage';
 
@@ -15,7 +22,7 @@ function storageAvailable(type) {
         storage.removeItem(x);
         return true;
     }
-    catch(e) {
+    catch (e) {
         return e instanceof DOMException && (
             // everything except Firefox
             e.code === 22 ||
@@ -42,5 +49,9 @@ function updateStorage(storageData) {
     }
 }
 
-ReactDOM.render(<App {...inputData} onUpdate={updateStorage}/>, document.getElementById('root'));
+ReactDOM.render(<Provider store={reduxStore}>
+                    <App {...inputData} onUpdate={updateStorage} />
+                </Provider>,
+                document.getElementById('root'));
+// ReactDOM.render(<App {...inputData} onUpdate={updateStorage} />, document.getElementById('root'));
 registerServiceWorker();

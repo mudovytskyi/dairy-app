@@ -1,7 +1,9 @@
-import  React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTask } from '../../actions'
 
 class AddTaskBar extends Component {
-    
+
     addTask = (value) => {
         this.props.addTask(value);
         this.refs.newTaskInput.value = '';
@@ -19,23 +21,39 @@ class AddTaskBar extends Component {
     handleKeyPress = (event) => {
         let newTaskValue = this.refs.newTaskInput.value;
         if (newTaskValue && event.charCode === 13) {
-           this.addTask(newTaskValue);
+            this.addTask(newTaskValue);
         }
     }
 
-    render () {
+    render() {
         return (
             <div className="AddTaskBar">
-            
+
                 <input type="text"
                     onKeyPress={this.handleKeyPress}
                     ref="newTaskInput"
                     placeholder="Type name here..." />
-                <input type="submit" value="Add new" onClick={this.handleSubmit}/>
-            
+                <input type="submit" value="Add new" onClick={this.handleSubmit} />
+
             </div>
         );
     }
 }
+
+
+AddTaskBar = connect(
+    /* state => {
+        return {
+            initialValues: state.comments.dictionary.initial
+        }
+    } */
+    null,
+    (dispatch) => {
+        return {
+            addTask: (text) => dispatch(addTask(text)),
+        }
+    }
+)(AddTaskBar);
+
 
 export default AddTaskBar;
