@@ -1,17 +1,19 @@
-import  React, { Component } from 'react';
-import CommentList from './CommentList';
-import AddCommentBar from './AddCommentBar';
+import { connect } from 'react-redux'
+import CommentList from '../../components/comment/CommentList'
 
-class CommentListView extends Component {
-    render () {
-        return (
-            <div className="CommentListView">
-                <p className="App-title">Comments #{this.props.taskIndex > -1 ? this.props.taskIndex + 1 : ""}</p>
-                <CommentList items={this.props.comments}/>
-                <AddCommentBar addComment={this.props.onAdd} disabled={this.props.taskIndex == -1 }/>
-            </div>
-        );
-    }
+const getSelectedTaskComments = (tasks) => {
+    let taskComments
+    tasks.forEach(task => {
+        if (task.selected)
+            taskComments = task.comments
+        }
+    )
+    return taskComments;
 }
 
-export default CommentListView;
+const mapStateToProps = state => ({
+    comments: getSelectedTaskComments(state.tasks)
+})
+
+export default connect(mapStateToProps)(CommentList)
+

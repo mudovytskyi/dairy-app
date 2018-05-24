@@ -1,29 +1,17 @@
-import  React, { Component } from 'react';
-import AddTaskBar from './AddTaskBar';
-import TaskList from './TaskList';
+import { connect } from 'react-redux'
+import TaskList from '../../components/task/TaskList'
+import { selectTask, deleteTask } from '../../actions'
 
-class TaskListView extends Component {
-   
-    onAddNewHandler = (newTask) => {
-        this.props.onAdd(newTask);
-        this.refs.list.updateScroll();
-    }
+const mapStateToProps = state => ({
+    tasks: state.tasks
+})
 
-    render () {
-        return (
-            <div className="TaskListView">
-                <p className="App-title">Items</p>
-                <AddTaskBar/>
-                { /* addTask={this.onAddNewHandler} */}
-                <TaskList/>
-                {// ref='list' items={this.props.tasks} 
-                    // onSelect={this.props.onSelect}
-                    // selectedTaskID={this.props.taskID} 
-                    // onDelete={this.props.onDelete}
-                }
-             </div>
-        );
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    selectTask: id => dispatch(selectTask(id)),
+    deleteTask: id => dispatch(deleteTask(id))
+})
 
-export default TaskListView;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TaskList)

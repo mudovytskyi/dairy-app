@@ -42,11 +42,6 @@ class AddTaskBar extends Component {
 
 
 AddTaskBar = connect(
-    /* state => {
-        return {
-            initialValues: state.comments.dictionary.initial
-        }
-    } */
     null,
     (dispatch) => {
         return {
