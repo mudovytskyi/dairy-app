@@ -9,9 +9,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 
-let reduxStore = createStore(rootReducer)
 
-let localStorage, inputData = {};
+
+let localStorage, initialData = {};
 const STORAGE_NAME = 'storage';
 
 function storageAvailable(type) {
@@ -40,17 +40,21 @@ function storageAvailable(type) {
 
 if (storageAvailable('localStorage')) {
     localStorage = window.localStorage;
-    inputData = JSON.parse(localStorage.getItem(STORAGE_NAME)) || {};
+    initialData = JSON.parse(localStorage.getItem(STORAGE_NAME)) || {};
 }
 
 function updateStorage(storageData) {
+    console.log("STORAGE UPDATED")
     if (storageAvailable('localStorage')) {
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(storageData));
+        localStorage.setItem(STORAGE_NAME, JSON.stringify(reduxStore.getState()));
     }
 }
 
+let reduxStore = createStore(rootReducer, initialData)
+let unsubscribe = reduxStore.subscribe(updateStorage)
+
 ReactDOM.render(<Provider store={reduxStore}>
-                    <App {...inputData} onUpdate={updateStorage} />
+                    <App/>
                 </Provider>,
                 document.getElementById('root'));
 // ReactDOM.render(<App {...inputData} onUpdate={updateStorage} />, document.getElementById('root'));

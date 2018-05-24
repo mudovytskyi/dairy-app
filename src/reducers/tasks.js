@@ -2,21 +2,23 @@ import {
     ADD_TASK,
     SELECT_TASK,
     DELETE_TASK,
-    ADD_COMMENT
+    ADD_COMMENT,
+    GET_FROM_LOCAL_STORAGE,
+    SET_TO_LOCAL_STORAGE
 } from '../actions/actionTypes';
 
 const tasks = (state = [], action) => {
     switch (action.type) {
         case ADD_TASK:
 
-            state.map(task => 
+            state.map(task =>
                 (task.selected)
                     ? { ...task, selected: !task.selected }
                     : task
             )
 
             return [
-                ...state.map(task => 
+                ...state.map(task =>
                     (task.selected)
                         ? { ...task, selected: !task.selected }
                         : task
@@ -29,11 +31,11 @@ const tasks = (state = [], action) => {
                 }
             ]
         case SELECT_TASK:
-            return state.map(task => 
+            return state.map(task =>
                 (task.selected)
                     ? { ...task, selected: !task.selected }
                     : (task._id === action._id)
-                        ? { ...task, selected: !task.selected}
+                        ? { ...task, selected: !task.selected }
                         : task
             )
         case DELETE_TASK:
@@ -48,7 +50,12 @@ const tasks = (state = [], action) => {
                     ? { ...task, comments: [...task.comments, action.text] }
                     : task
             )
-
+        // case GET_FROM_LOCAL_STORAGE:
+        //     console.log("LS", state)
+        //     return state
+        case SET_TO_LOCAL_STORAGE:
+            console.log("LSS", state)
+            
         default:
             return state
     }

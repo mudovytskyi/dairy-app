@@ -1,7 +1,7 @@
-import { ADD_COMMENT, SHOW_COMMENTS } from '../actions/actionTypes';
+// import { ADD_COMMENT, SHOW_COMMENTS } from '../actions/actionTypes';
 
 const comments = (state = [], action) => {
-    switch (action.type) {
+    // switch (action.type) {
         // case ADD_COMMENT:
         //     // const selectedTask = {...state[action._id]};
         //     // console.log("SAC", action._id, selectedTask)
@@ -25,15 +25,15 @@ const comments = (state = [], action) => {
             // return newState
         // console.log("NEW COMMENT STATE", newState)
         // return newState
-        case SHOW_COMMENTS:
-            return state.map(todo =>
-                (todo.id === action.id)
-                    ? { ...todo, completed: !todo.completed }
-                    : todo
-            )
-        default:
+        // case SHOW_COMMENTS:
+        //     return state.map(todo =>
+        //         (todo.id === action.id)
+        //             ? { ...todo, completed: !todo.completed }
+        //             : todo
+        //     )
+        // default:
             return state
-    }
+    // }
 }
 
 export default comments

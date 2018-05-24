@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTask } from '../../actions'
+import { addTask, saveToStorage } from '../../actions'
 
 class AddTaskBar extends Component {
 
     addTask = (value) => {
         this.props.addTask(value);
+        this.props.updateStorage();
         this.refs.newTaskInput.value = '';
     }
 
@@ -46,6 +47,7 @@ AddTaskBar = connect(
     (dispatch) => {
         return {
             addTask: (text) => dispatch(addTask(text)),
+            updateStorage: () => dispatch(saveToStorage()),
         }
     }
 )(AddTaskBar);

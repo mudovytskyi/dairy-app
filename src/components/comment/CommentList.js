@@ -29,28 +29,11 @@ class CommentList extends Component {
                 <ul className="CommentList" />
             );
         }
-        // if (this.props.items) {
-        //     return (
-        //         <nav>
-        //             <ul id="containerComments" className="CommentList">{
-        //                     Object.keys(this.props.items).map(commentID =>
-        //                         <CommentRecord 
-        //                             key = {commentID}
-        //                             value={this.props.items[commentID]} />
-        //                     )
-        //                 }
-        //             </ul>
-        //         </nav>
-        //         );
-        // } else {
-        //     return (
-        //         <ul className="CommentList"/>
-        //     );
-        // }
     }
 }
+
 CommentList.propTypes = {
-    comments: PropTypes.arrayOf(PropTypes.string).isRequired
+    comments: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default CommentList;

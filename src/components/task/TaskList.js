@@ -4,12 +4,16 @@ import TaskRecord from './TaskRecord';
 import { animateScroll } from 'react-scroll';
 import $ from 'jquery';
 import tasks from '../../reducers/comments';
-import { selectTask } from '../../actions';
 
 class TaskList extends Component {
 
     updateScroll = () => {
         animateScroll.scrollToBottom({ containerId: 'container' });
+    }
+    
+    processAction = (func, id) => {
+        func(id)
+        this.props.updateStorage()
     }
 
     render() {
@@ -18,22 +22,12 @@ class TaskList extends Component {
                 <ul id='container' className="TaskList"> {
                     this.props.tasks.map(task =>
                         <TaskRecord key={task._id} {...task}
-                            onClick={() => this.props.deleteTask(task._id)}
-                            onSelect={() => this.props.selectTask(task._id)}
+                            onClick={() => this.processAction(this.props.deleteTask, task._id)}
+                            onSelect={() => this.processAction(this.props.selectTask, task._id)}
+                            // onClick={() => this.props.deleteTask(task._id)}
+                            // onSelect={() => this.props.selectTask(task._id)}
                         />
                     )
-                    // Object.keys(this.props.tasks).map(taskID =>
-                    //         {   
-                    //             let task = this.props.tasks[taskID];
-                    //             let record = (task._id === this.props.selectedTaskID) 
-                    //                 ? <TaskRecord key = {taskID} selected {...task} onClick={this.props.onDelete} 
-                    //                     onSelect={this.props.onSelect} />
-                    //                 : <TaskRecord key = {taskID} {...task} onClick={this.props.onDelete} 
-                    //                     onSelect={this.props.onSelect} />;
-
-                    //             return record;
-                    //         }
-                    //     )
                 }
                 </ul>
             </nav>
@@ -50,6 +44,7 @@ TaskList.propTypes = {
     }).isRequired).isRequired,
     selectTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
+    updateStorage: PropTypes.func.isRequired,
 };
 
 export default TaskList;

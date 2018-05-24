@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addComment, selectTask } from '../../actions'
+import { addComment, saveToStorage } from '../../actions'
 import CommentIcon from '../../components/comment/CommentIcon'
 
 
@@ -12,6 +12,7 @@ class AddCommentBar extends Component {
             let newCommentValue = this.refs.newCommentTA.value;
             if (newCommentValue) {
                 this.props.addComment(newCommentValue);
+                this.props.updateStorage();
                 this.refs.newCommentTA.value = '';
             }
         }
@@ -32,15 +33,12 @@ class AddCommentBar extends Component {
 
 
 const getSelectedTask = (tasks) => {
-    console.log("TASKS", tasks)
     let disabled = true
     tasks.forEach(task => {
-        console.log("TASK", task)
         if (task.selected)
-             disabled = false
-         }
-     )
-     console.log("FIRE")
+            disabled = false
+    }
+    )
     return disabled;
 }
 
@@ -48,8 +46,10 @@ const mapStateToProps = (state) => ({
     disabled: getSelectedTask(state.tasks)
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    addComment: comment => dispatch(addComment(comment))
+const mapDispatchToProps = (dispatch, state) => ({
+    addComment: comment =>
+        dispatch(addComment(comment)),
+    updateStorage: () => dispatch(saveToStorage())
 })
 
 export default connect(

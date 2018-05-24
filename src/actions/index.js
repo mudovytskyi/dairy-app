@@ -45,3 +45,17 @@ export const showComments = comments => ({
     type: SHOW_COMMENTS,
     comments,
 })
+
+//-----------------------------
+//
+//  STORAGE
+//
+//-----------------------------
+export const getFromStorage = () => ({
+    type: GET_FROM_LOCAL_STORAGE,
+})
+
+export const saveToStorage = () => ({
+    type: SET_TO_LOCAL_STORAGE,
+    // state
+})
