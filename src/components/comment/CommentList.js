@@ -6,7 +6,7 @@ import { animateScroll } from 'react-scroll'
 class CommentList extends Component {
 
     componentDidUpdate() {
-        animateScroll.scrollToBottom({ containerId: 'containerComments' });
+        animateScroll.scrollToBottom({ containerId: 'containerComments' })
     }
 
     render() {
@@ -14,7 +14,7 @@ class CommentList extends Component {
             return (
                 <nav>
                     <ul id="containerComments" className="CommentList">{
-                       
+
                         Object.keys(this.props.comments).map(commentID =>
                             <CommentRecord
                                 key={commentID}
@@ -23,11 +23,11 @@ class CommentList extends Component {
                     }
                     </ul>
                 </nav>
-            );
+            )
         } else {
             return (
                 <ul className="CommentList" />
-            );
+            )
         }
     }
 }
@@ -36,4 +36,4 @@ CommentList.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.string)
 }
 
-export default CommentList;
+export default CommentList

@@ -3,12 +3,9 @@ import {
     SELECT_TASK,
     DELETE_TASK,
     ADD_COMMENT,
-    SHOW_COMMENTS,
-    GET_FROM_LOCAL_STORAGE,
-    SET_TO_LOCAL_STORAGE,
-} from './actionTypes';
+} from './actionTypes'
 
-let nextTask = 0
+let nextTask = Date.now()
 
 //-----------------------------
 //
@@ -39,23 +36,4 @@ export const deleteTask = id => ({
 export const addComment = text => ({
     type: ADD_COMMENT,
     text,
-})
-
-export const showComments = comments => ({
-    type: SHOW_COMMENTS,
-    comments,
-})
-
-//-----------------------------
-//
-//  STORAGE
-//
-//-----------------------------
-export const getFromStorage = () => ({
-    type: GET_FROM_LOCAL_STORAGE,
-})
-
-export const saveToStorage = () => ({
-    type: SET_TO_LOCAL_STORAGE,
-    // state
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addComment, saveToStorage } from '../../actions'
+import { addComment } from '../../actions'
 import CommentIcon from '../../components/comment/CommentIcon'
 
 
@@ -9,11 +9,10 @@ class AddCommentBar extends Component {
     handleKeyPress = (event) => {
         if (event.ctrlKey && event.charCode === 13) {
 
-            let newCommentValue = this.refs.newCommentTA.value;
+            let newCommentValue = this.refs.newCommentTA.value
             if (newCommentValue) {
-                this.props.addComment(newCommentValue);
-                this.props.updateStorage();
-                this.refs.newCommentTA.value = '';
+                this.props.addComment(newCommentValue)
+                this.refs.newCommentTA.value = ''
             }
         }
     }
@@ -26,8 +25,7 @@ class AddCommentBar extends Component {
                     <textarea ref="newCommentTA" disabled={this.props.disabled} />
                 </div>
             </div>
-
-        );
+        )
     }
 }
 
@@ -39,7 +37,7 @@ const getSelectedTask = (tasks) => {
             disabled = false
     }
     )
-    return disabled;
+    return disabled
 }
 
 const mapStateToProps = (state) => ({
@@ -47,12 +45,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch, state) => ({
-    addComment: comment =>
-        dispatch(addComment(comment)),
-    updateStorage: () => dispatch(saveToStorage())
+    addComment: comment => dispatch(addComment(comment)),
 })
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddCommentBar);
+)(AddCommentBar)

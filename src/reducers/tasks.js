@@ -3,20 +3,11 @@ import {
     SELECT_TASK,
     DELETE_TASK,
     ADD_COMMENT,
-    GET_FROM_LOCAL_STORAGE,
-    SET_TO_LOCAL_STORAGE
-} from '../actions/actionTypes';
+} from '../actions/actionTypes'
 
 const tasks = (state = [], action) => {
     switch (action.type) {
         case ADD_TASK:
-
-            state.map(task =>
-                (task.selected)
-                    ? { ...task, selected: !task.selected }
-                    : task
-            )
-
             return [
                 ...state.map(task =>
                     (task.selected)
@@ -30,19 +21,20 @@ const tasks = (state = [], action) => {
                     comments: []
                 }
             ]
+
         case SELECT_TASK:
-            return state.map(task =>
-                (task.selected)
-                    ? { ...task, selected: !task.selected }
-                    : (task._id === action._id)
-                        ? { ...task, selected: !task.selected }
-                        : task
-            )
+            return state.map(task => {
+                if (!task.selected && task._id === action._id ||
+                    task.selected && task._id !== action._id) {
+                    return { ...task, selected: !task.selected }
+                }
+                return task
+            })
+
         case DELETE_TASK:
-            const { [action._id]: removedElement, ...rest } = state;
-            return [
-                ...rest,
-            ]
+            return state.filter((task, index, array) =>
+                task._id !== action._id
+            )
 
         case ADD_COMMENT:
             return state.map(task =>
@@ -50,12 +42,7 @@ const tasks = (state = [], action) => {
                     ? { ...task, comments: [...task.comments, action.text] }
                     : task
             )
-        // case GET_FROM_LOCAL_STORAGE:
-        //     console.log("LS", state)
-        //     return state
-        case SET_TO_LOCAL_STORAGE:
-            console.log("LSS", state)
-            
+
         default:
             return state
     }

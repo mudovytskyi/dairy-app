@@ -1,12 +1,13 @@
-import  React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class CommentIcon extends Component {
-    render () {
+    render() {
         return (
             <div className="CommentIcon">
                 <div className="placeholder-icon" />
             </div>
-        );
+        )
     }
 }
-export default CommentIcon;
+
+export default CommentIcon

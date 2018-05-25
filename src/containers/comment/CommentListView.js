@@ -6,9 +6,9 @@ const getSelectedTaskComments = (tasks) => {
     tasks.forEach(task => {
         if (task.selected)
             taskComments = task.comments
-        }
+    }
     )
-    return taskComments;
+    return taskComments
 }
 
 const mapStateToProps = state => ({

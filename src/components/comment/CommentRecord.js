@@ -1,8 +1,8 @@
-import  React, { Component } from 'react';
-import CommentIcon from './CommentIcon';
+import React, { Component } from 'react'
+import CommentIcon from './CommentIcon'
 
 class CommentRecord extends Component {
-    render () {
+    render() {
         return (
             <li className="CommentRecord">
                 <CommentIcon />
@@ -10,7 +10,8 @@ class CommentRecord extends Component {
                     <span>{this.props.value}</span>
                 </div>
             </li>
-        );
+        )
     }
 }
-export default CommentRecord;
+
+export default CommentRecord

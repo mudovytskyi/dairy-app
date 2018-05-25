@@ -1,43 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTask, saveToStorage } from '../../actions'
+import { addTask } from '../../actions'
 
 class AddTaskBar extends Component {
 
     addTask = (value) => {
-        this.props.addTask(value);
-        this.props.updateStorage();
-        this.refs.newTaskInput.value = '';
+        this.props.addTask(value)
+        this.refs.newTaskInput.value = ''
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        let newTaskValue = this.refs.newTaskInput.value;
+        let newTaskValue = this.refs.newTaskInput.value
         if (newTaskValue) {
-            this.addTask(newTaskValue);
+            this.addTask(newTaskValue)
         }
     }
 
     handleKeyPress = (event) => {
-        let newTaskValue = this.refs.newTaskInput.value;
+        let newTaskValue = this.refs.newTaskInput.value
         if (newTaskValue && event.charCode === 13) {
-            this.addTask(newTaskValue);
+            this.addTask(newTaskValue)
         }
     }
 
     render() {
         return (
             <div className="AddTaskBar">
-
                 <input type="text"
                     onKeyPress={this.handleKeyPress}
                     ref="newTaskInput"
                     placeholder="Type name here..." />
                 <input type="submit" value="Add new" onClick={this.handleSubmit} />
-
             </div>
-        );
+        )
     }
 }
 
@@ -47,10 +44,9 @@ AddTaskBar = connect(
     (dispatch) => {
         return {
             addTask: (text) => dispatch(addTask(text)),
-            updateStorage: () => dispatch(saveToStorage()),
         }
     }
-)(AddTaskBar);
+)(AddTaskBar)
 
 
-export default AddTaskBar;
+export default AddTaskBar
