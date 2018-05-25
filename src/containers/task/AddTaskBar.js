@@ -1,49 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { reset } from 'redux-form'
+import { ADD_TASK_FORM_NAME } from '../../forms/formNames'
+import AddTaksForm from '../../forms/AddTaskForm';
 import { addTask } from '../../actions'
 
 class AddTaskBar extends Component {
 
-    addTask = (value) => {
+    handleSubmit = value => {
         this.props.addTask(value)
-        this.refs.newTaskInput.value = ''
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-
-        let newTaskValue = this.refs.newTaskInput.value
-        if (newTaskValue) {
-            this.addTask(newTaskValue)
-        }
-    }
-
-    handleKeyPress = (event) => {
-        let newTaskValue = this.refs.newTaskInput.value
-        if (newTaskValue && event.charCode === 13) {
-            this.addTask(newTaskValue)
-        }
     }
 
     render() {
         return (
-            <div className="AddTaskBar">
-                <input type="text"
-                    onKeyPress={this.handleKeyPress}
-                    ref="newTaskInput"
-                    placeholder="Type name here..." />
-                <input type="submit" value="Add new" onClick={this.handleSubmit} />
-            </div>
+            // <div className="AddTaskBar">
+                <AddTaksForm onSubmit={this.handleSubmit} />
+            // </div>
         )
     }
 }
-
 
 AddTaskBar = connect(
     null,
     (dispatch) => {
         return {
-            addTask: (text) => dispatch(addTask(text)),
+            addTask: (text) => {
+                dispatch(addTask(text))
+                dispatch(reset(ADD_TASK_FORM_NAME))
+            }
         }
     }
 )(AddTaskBar)

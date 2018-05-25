@@ -12,10 +12,13 @@ let nextTask = Date.now()
 //  TASKS
 //
 //-----------------------------
-export const addTask = text => ({
+export const addTask = task => ({
+    // type: ADD_TASK,
+    // _id: nextTask++,
+    // name: task.name,
     type: ADD_TASK,
+    ...task,
     _id: nextTask++,
-    text,
 })
 
 export const selectTask = id => ({
@@ -33,7 +36,7 @@ export const deleteTask = id => ({
 //  COMMENTS
 //
 //-----------------------------
-export const addComment = text => ({
+export const addComment = comment => ({
     type: ADD_COMMENT,
-    text,
+    ...comment,
 })

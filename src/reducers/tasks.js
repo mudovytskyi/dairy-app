@@ -16,7 +16,7 @@ const tasks = (state = [], action) => {
                 ),
                 {
                     _id: action._id,
-                    name: action.text,
+                    name: action.name,
                     selected: true,
                     comments: []
                 }
@@ -39,7 +39,7 @@ const tasks = (state = [], action) => {
         case ADD_COMMENT:
             return state.map(task =>
                 (task.selected)
-                    ? { ...task, comments: [...task.comments, action.text] }
+                    ? { ...task, comments: [...task.comments, action.comment] }
                     : task
             )
 

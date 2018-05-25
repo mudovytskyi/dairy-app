@@ -1,30 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addComment } from '../../actions'
-import CommentIcon from '../../components/comment/CommentIcon'
+import AddCommentForm from '../../forms/AddCommentForm'
+// case 2
+// import { addComment } from '../../actions'
 
 
 class AddCommentBar extends Component {
-
-    handleKeyPress = (event) => {
-        if (event.ctrlKey && event.charCode === 13) {
-
-            let newCommentValue = this.refs.newCommentTA.value
-            if (newCommentValue) {
-                this.props.addComment(newCommentValue)
-                this.refs.newCommentTA.value = ''
-            }
-        }
-    }
-
     render() {
         return (
-            <div className="AddCommentBar">
-                <CommentIcon />
-                <div className="comment-new" onKeyPress={this.handleKeyPress}>
-                    <textarea ref="newCommentTA" disabled={this.props.disabled} />
-                </div>
-            </div>
+            <AddCommentForm disabled={this.props.disabled} />
         )
     }
 }
@@ -35,8 +19,7 @@ const getSelectedTask = (tasks) => {
     tasks.forEach(task => {
         if (task.selected)
             disabled = false
-    }
-    )
+    })
     return disabled
 }
 
@@ -44,11 +27,11 @@ const mapStateToProps = (state) => ({
     disabled: getSelectedTask(state.tasks)
 })
 
-const mapDispatchToProps = (dispatch, state) => ({
-    addComment: comment => dispatch(addComment(comment)),
-})
+// case 2
+// export function remoteSubmit(value, dispatch) {
+//     dispatch(addComment(value))
+// }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
 )(AddCommentBar)
