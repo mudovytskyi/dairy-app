@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AddCommentForm from '../../forms/AddCommentForm'
+import { isCommentBarDisabledSelector } from '../../selectors'
+
 // case 2
 // import { addComment } from '../../actions'
-
 
 class AddCommentBar extends Component {
     render() {
@@ -13,18 +14,8 @@ class AddCommentBar extends Component {
     }
 }
 
-
-const getSelectedTask = (tasks) => {
-    let disabled = true
-    tasks.forEach(task => {
-        if (task.selected)
-            disabled = false
-    })
-    return disabled
-}
-
 const mapStateToProps = (state) => ({
-    disabled: getSelectedTask(state.tasks)
+    disabled: isCommentBarDisabledSelector(state)
 })
 
 // case 2

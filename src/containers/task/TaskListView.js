@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import TaskList from '../../components/task/TaskList'
 import { selectTask, deleteTask } from '../../actions'
+import { getTasksSelector } from '../../selectors'
 
 const mapStateToProps = state => ({
-    tasks: state.tasks
+    tasks: getTasksSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({

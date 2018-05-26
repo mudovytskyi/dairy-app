@@ -17,17 +17,14 @@ class TaskRecord extends Component {
         this.props.onSelect(this.props._id)
     }
 
-    getNumberOfComments = () => {
-        return (this.props.comments) ? this.props.comments.length : 0
-    }
-
     render() {
+        const { name, comments } = this.props
         return (
-            <li className={(this.props.selected === true) ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected.bind(this)}>
+            <li className={(this.props.selected === true) ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>
                 <div className="indicator" />
                 <div className="task">
-                    <span className="task-name">{this.props.name}</span>
-                    <input className="num-comments" type="button" value={this.getNumberOfComments()} />
+                    <span className="task-name">{name}</span>
+                    <input className="num-comments" type="button" value={comments.length} />
                 </div>
                 <div className="task-action">
                     <input className="delete-btn" type="button" value="Delete" onClick={this.handleClick} />

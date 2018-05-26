@@ -13,9 +13,6 @@ let nextTask = Date.now()
 //
 //-----------------------------
 export const addTask = task => ({
-    // type: ADD_TASK,
-    // _id: nextTask++,
-    // name: task.name,
     type: ADD_TASK,
     ...task,
     _id: nextTask++,

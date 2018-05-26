@@ -1,18 +1,9 @@
 import { connect } from 'react-redux'
 import CommentList from '../../components/comment/CommentList'
-
-const getSelectedTaskComments = (tasks) => {
-    let taskComments
-    tasks.forEach(task => {
-        if (task.selected)
-            taskComments = task.comments
-    }
-    )
-    return taskComments
-}
+import { getSelectedTaskCommentsSelector } from '../../selectors'
 
 const mapStateToProps = state => ({
-    comments: getSelectedTaskComments(state.tasks)
+    comments: getSelectedTaskCommentsSelector(state)
 })
 
 export default connect(mapStateToProps)(CommentList)

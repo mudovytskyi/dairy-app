@@ -13,9 +13,7 @@ class AddTaskBar extends Component {
 
     render() {
         return (
-            // <div className="AddTaskBar">
-                <AddTaksForm onSubmit={this.handleSubmit} />
-            // </div>
+            <AddTaksForm onSubmit={this.handleSubmit} />
         )
     }
 }
