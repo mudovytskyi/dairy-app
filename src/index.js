@@ -5,52 +5,22 @@ import AppContainer from './containers/AppContainer'
 import registerServiceWorker from './registerServiceWorker'
 
 // add redux logic
-import { createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
 import { Provider } from 'react-redux'
-import rootReducer from './reducers'
 
-let localStorage, initialData = {}
-const STORAGE_NAME = 'storage'
+// add separate storage logic
+import configureStore from './store/configureStore'
 
-function storageAvailable(type) {
-    try {
-        var storage = window[type],
-            x = '__storage_test__'
-        storage.setItem(x, x)
-        storage.removeItem(x)
-        return true
-    }
-    catch (e) {
-        return e instanceof DOMException && (
-            // everything except Firefox
-            e.code === 22 ||
-            // Firefox
-            e.code === 1014 ||
-            // test name field too, because code might not be present
-            // everything except Firefox
-            e.name === 'QuotaExceededError' ||
-            // Firefox
-            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-            // acknowledge QuotaExceededError only if there's something already stored
-            storage.length !== 0
-    }
-}
+// move localStorage to services
+import { getInitialState, updateStorage } from './services';
 
-if (storageAvailable('localStorage')) {
-    localStorage = window.localStorage
-    initialData = JSON.parse(localStorage.getItem(STORAGE_NAME)) || {}
-}
+// add immutable
+import { Immutable } from 'immutable'
+import installDevTools from 'immutable-devtools'
+installDevTools(Immutable)
 
-function updateStorage(storageData) {
-    if (storageAvailable('localStorage')) {
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(reduxStore.getState()))
-    }
-}
+let reduxStore = configureStore(getInitialState())
 
-let reduxStore = createStore(rootReducer, initialData, devToolsEnhancer())
-
-reduxStore.subscribe(updateStorage)
+reduxStore.subscribe(() => updateStorage(reduxStore.getState()))
 
 ReactDOM.render(
     <Provider store={reduxStore}>

@@ -4,8 +4,9 @@ import {
     DELETE_TASK,
     ADD_COMMENT,
 } from '../actions/actionTypes'
+import { List } from 'immutable'
 
-const tasks = (state = [], action) => {
+const tasks = (state = List([]), action) => {
     switch (action.type) {
         case ADD_TASK:
             return [
