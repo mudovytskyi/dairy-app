@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import CommentRecord from './CommentRecord'
 import { animateScroll } from 'react-scroll'
-import { List } from 'immutable'
 
 class CommentList extends Component {
 
