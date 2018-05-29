@@ -3,44 +3,45 @@ import {
     SELECT_TASK,
     DELETE_TASK,
     ADD_COMMENT,
-} from '../actions/actionTypes'
-import { List } from 'immutable'
+} from '../constants/actionTypes'
+import { List, Map } from 'immutable'
 
 const tasks = (state = List([]), action) => {
     switch (action.type) {
         case ADD_TASK:
-            return [
-                ...state.map(task =>
-                    (task.selected)
-                        ? { ...task, selected: !task.selected }
-                        : task
-                ),
-                {
+            return state
+                .map(task => task.update('selected', selected => false))
+                .push(Map({
                     _id: action._id,
                     name: action.name,
                     selected: true,
-                    comments: []
-                }
-            ]
+                    comments: List([])
+                }))
 
         case SELECT_TASK:
-            return state.map(task => {
-                if (!task.selected && task._id === action._id ||
-                    task.selected && task._id !== action._id) {
-                    return { ...task, selected: !task.selected }
-                }
-                return task
-            })
+            return state
+                .map(task => {
+                    let _id = task.get('_id'),
+                        _actId = action._id,
+                        _selected = task.get('selected')
+
+                    if (!_selected && _id === _actId ||
+                        _selected && _id !== _actId) {
+                        task = task.update('selected', selected => !_selected)
+                    }
+
+                    return task
+                })
 
         case DELETE_TASK:
             return state.filter((task, index, array) =>
-                task._id !== action._id
+                task.get('_id') !== action._id
             )
 
         case ADD_COMMENT:
             return state.map(task =>
-                (task.selected)
-                    ? { ...task, comments: [...task.comments, action.comment] }
+                (task.get('selected'))
+                    ? task.update('comments', comments => comments.push(action.comment))
                     : task
             )
 

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Form, Field, reduxForm } from 'redux-form'
-import { ADD_TASK_FORM_NAME } from './formNames'
+import { Form, Field, reduxForm } from 'redux-form/immutable'
+import { ADD_TASK_FORM_NAME } from '../constants/formNames'
 
 let AddTaskForm = props => {
-    const { handleSubmit, pristine, submitting } = props
+    const { handleSubmit, handleSubmitFail, pristine, submitting } = props
     return (
-        <Form onSubmit={handleSubmit} className="AddTaskForm">
+        <Form onSubmit={handleSubmit} onSubmitFail={handleSubmitFail} className="AddTaskForm">
             <Field name="name" component="input" type="text"
                 placeholder="Type name here..." />
             <button type="submit" disabled={pristine || submitting}>Add new</button>
@@ -13,13 +13,13 @@ let AddTaskForm = props => {
     )
 }
 
-const validate = values => {
+const validate = value => {
     const errors = {}
 
-    if (!values.name) {
+    if (!value.get('name')) {
         errors.name = 'Task name is required'
     }
-
+    
     return errors
 }
 

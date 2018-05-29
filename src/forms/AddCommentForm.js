@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Field, reduxForm } from 'redux-form'
-import { ADD_COMMENT_FORM_NAME } from './formNames'
+import { Form, Field, reduxForm } from 'redux-form/immutable'
+import { ADD_COMMENT_FORM_NAME } from '../constants/formNames'
 import CommentIcon from '../components/comment/CommentIcon'
 // case 1
 import remoteSubmit from './remoteSubmit'
@@ -10,17 +10,22 @@ import remoteSubmit from './remoteSubmit'
 class AddCommentForm extends Component {
 
     handleKeyPress = (event, dispatch) => {
-        if (event.ctrlKey && event.charCode === 13) {
+        const { valid } = this.props
+
+        if (event.ctrlKey && event.charCode === 13 && valid) {
             this.props.handleSubmit()
             this.props.reset()
         }
     }
 
     render() {
+        const { handleSubmit, handleSubmitFail } = this.props
         return (
             <Form className="AddCommentForm"
                 onKeyPress={this.handleKeyPress.bind(this)}
-                onSubmit={this.props.handleSubmit(remoteSubmit)}>
+                onSubmitFail={handleSubmitFail}
+                onSubmit={handleSubmit(remoteSubmit)}>
+
                 <CommentIcon />
                 <Field name="comment"
                     className="comment-new"
@@ -33,11 +38,11 @@ class AddCommentForm extends Component {
     }
 }
 
-const validate = values => {
+const validate = value => {
     const errors = {}
 
-    if (!values.comment) {
-        errors.comment = 'Task name is required'
+    if (value && !value.get('comment')) {
+        errors.comment = 'Comment is required'
     }
 
     return errors

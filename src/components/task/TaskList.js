@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import TaskRecord from './TaskRecord'
 import { animateScroll } from 'react-scroll'
 
@@ -14,9 +15,9 @@ class TaskList extends Component {
             <nav>
                 <ul id='container' className="TaskList"> {
                     this.props.tasks.map(task =>
-                        <TaskRecord key={task._id} {...task}
-                            onClick={() => this.props.deleteTask(task._id)}
-                            onSelect={() => this.props.selectTask(task._id)}
+                        <TaskRecord key={task.get('_id')} {...task.toJS()}
+                            onClick={() => this.props.deleteTask(task.get('_id'))}
+                            onSelect={() => this.props.selectTask(task.get('_id'))}
                         />
                     )
                 }
@@ -27,11 +28,11 @@ class TaskList extends Component {
 }
 
 TaskList.propTypes = {
-    tasks: PropTypes.arrayOf(PropTypes.shape({
+    tasks: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
         _id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         selected: PropTypes.bool.isRequired,
-        comments: PropTypes.arrayOf(PropTypes.string).isRequired
+        comments: ImmutablePropTypes.listOf(PropTypes.string).isRequired
     }).isRequired).isRequired,
     selectTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,

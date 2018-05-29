@@ -7,9 +7,15 @@ import { isCommentBarDisabledSelector } from '../../selectors'
 // import { addComment } from '../../actions'
 
 class AddCommentBar extends Component {
+
+    handleSubmitFail = value => {
+        console.log("FAILED", value)
+    }
+
     render() {
+        const { disabled } = this.props
         return (
-            <AddCommentForm disabled={this.props.disabled} />
+            <AddCommentForm disabled={disabled} onSubmitFail={this.handleSubmitFail} />
         )
     }
 }

@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 
 // move localStorage to services
-import { getInitialState, updateStorage } from './services';
+import { getInitialState, updateStorage } from './services'
 
 // add immutable
 import { Immutable } from 'immutable'

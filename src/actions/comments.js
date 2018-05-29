@@ -1,6 +1,6 @@
 import {
     ADD_COMMENT,
-} from './actionTypes'
+} from '../constants/actionTypes'
 
 //-----------------------------
 //
@@ -9,5 +9,5 @@ import {
 //-----------------------------
 export const addComment = comment => ({
     type: ADD_COMMENT,
-    ...comment,
+    comment: comment.get('comment'),
 })

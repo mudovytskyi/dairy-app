@@ -18,9 +18,9 @@ class TaskRecord extends Component {
     }
 
     render() {
-        const { name, comments } = this.props
+       const {name, comments, selected} = this.props
         return (
-            <li className={(this.props.selected === true) ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>
+            <li className={selected ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>
                 <div className="indicator" />
                 <div className="task">
                     <span className="task-name">{name}</span>

@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect'
+import { List } from 'immutable'
 
-export const getTasksSelector = (state) => state.tasks
+export const getTasksSelector = (state) => state.get('tasks')
 
 export const getSelectedTaskSelector = createSelector(
     getTasksSelector,
-    tasks =>
-        tasks.find((task) => task.selected === true)
+    tasks => tasks.find((task) => task.get('selected') == true)
 )
 
 export const isCommentBarDisabledSelector = createSelector(
@@ -20,5 +20,5 @@ export const getSelectedTaskListPositionSelector = createSelector(
 
 export const getSelectedTaskCommentsSelector = createSelector(
     getSelectedTaskSelector,
-    task => task ? task.comments : []
+    task => task ? task.get('comments') : List([])
 )

@@ -2,7 +2,7 @@ import {
     ADD_TASK,
     SELECT_TASK,
     DELETE_TASK,
-} from './actionTypes'
+} from '../constants/actionTypes'
 
 let nextTask = Date.now()
 
@@ -13,7 +13,7 @@ let nextTask = Date.now()
 //-----------------------------
 export const addTask = task => ({
     type: ADD_TASK,
-    ...task,
+    name: task.get('name'),
     _id: nextTask++,
 })
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 import CommentRecord from './CommentRecord'
 import { animateScroll } from 'react-scroll'
+import { List } from 'immutable'
 
 class CommentList extends Component {
 
@@ -10,15 +12,14 @@ class CommentList extends Component {
     }
 
     render() {
-        if (this.props.comments) {
+        let { comments } = this.props
+
+        if (comments) {
             return (
                 <nav>
                     <ul id="containerComments" className="CommentList">{
-
-                        Object.keys(this.props.comments).map(commentID =>
-                            <CommentRecord
-                                key={commentID}
-                                value={this.props.comments[commentID]} />
+                        comments.map((value, key) =>
+                            <CommentRecord key={key} value={value} />
                         )
                     }
                     </ul>
@@ -33,7 +34,7 @@ class CommentList extends Component {
 }
 
 CommentList.propTypes = {
-    comments: PropTypes.arrayOf(PropTypes.string)
+    comments: ImmutablePropTypes.listOf(PropTypes.string)
 }
 
 export default CommentList
