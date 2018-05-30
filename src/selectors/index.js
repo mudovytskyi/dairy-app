@@ -5,7 +5,7 @@ export const getTasksSelector = (state) => state.get('tasks')
 
 export const getSelectedTaskSelector = createSelector(
     getTasksSelector,
-    tasks => tasks.find((task) => task.get('selected') == true)
+    tasks => tasks.find((task) => task.get('selected') === true)
 )
 
 export const isCommentBarDisabledSelector = createSelector(

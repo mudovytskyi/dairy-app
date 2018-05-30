@@ -5,5 +5,21 @@
       "config/**/*.js",
       "node_modules/**/*.ts"
     ]
+  },
+  "rules": {
+    "object-literal-sort-keys": false,
+    "curly": false,
+    "no-console": [true, "log"],
+    "ordered-imports": false,
+    "one-variable-per-declaration": false,
+    "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case", "allow-snake-case"]
+  },
+  "jsRules": {
+    "object-literal-sort-keys": false,
+    "curly": false,
+    "no-console": [true, "log"],
+    "ordered-imports": false,
+    "one-variable-per-declaration": false,
+    "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case", "allow-snake-case"]
   }
 }
