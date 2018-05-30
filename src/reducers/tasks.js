@@ -4,9 +4,24 @@ import {
     DELETE_TASK,
     ADD_COMMENT,
 } from '../constants/actionTypes'
+
+import {
+    AddTaskAction,
+    SelectTaskAction,
+    DeleteTaskAction,
+    AddTaskCommentAction,
+    OtherAction
+} from '../actions';
+
 import { List, Map } from 'immutable'
 
-const tasks = (state = List([]), action) => {
+type TaskAction =
+    AddTaskAction |
+    SelectTaskAction |
+    DeleteTaskAction |
+    AddTaskCommentAction
+
+const tasks = (state = List([]), action:TaskAction = OtherAction) => {
     switch (action.type) {
         case ADD_TASK:
             return state
