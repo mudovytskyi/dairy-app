@@ -3,8 +3,18 @@ import PropTypes from 'prop-types'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import TaskRecord from './TaskRecord'
 import { animateScroll } from 'react-scroll'
+import { List } from 'immutable'
+import ITask from './ITask'
 
-class TaskList extends Component {
+
+export interface ITaskListProps {
+    tasks: List<ITask>,
+    deleteTask: () => void,
+    selectTask: () => void,
+}
+
+
+class TaskList extends Component<ITaskListProps> {
 
     updateScroll = () => {
         animateScroll.scrollToBottom({ containerId: 'container' })
@@ -27,15 +37,15 @@ class TaskList extends Component {
     }
 }
 
-TaskList.propTypes = {
-    tasks: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
-        _id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        selected: PropTypes.bool.isRequired,
-        comments: ImmutablePropTypes.listOf(PropTypes.string).isRequired
-    }).isRequired).isRequired,
-    selectTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired,
-}
+// TaskList.propTypes = {
+//     tasks: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
+//         _id: PropTypes.number.isRequired,
+//         name: PropTypes.string.isRequired,
+//         selected: PropTypes.bool.isRequired,
+//         comments: ImmutablePropTypes.listOf(PropTypes.string).isRequired
+//     }).isRequired).isRequired,
+//     selectTask: PropTypes.func.isRequired,
+//     deleteTask: PropTypes.func.isRequired,
+// }
 
 export default TaskList

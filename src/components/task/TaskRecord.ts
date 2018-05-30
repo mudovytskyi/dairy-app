@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
+import { ITaskImmutable } from './ITask'
 
-class TaskRecord extends Component {
+export interface ITaskRecordProps extends ITaskImmutable {
+    onClick?: () => void,
+    onSelect?: () => void
+}
+
+class TaskRecord extends Component<ITaskRecordProps> {
+    constructor(props:ITaskRecordProps) {
+        super(props)
+    }
 
     handleClick = () => {
         this.props.onClick(this.props._id)
     }
 
-    handleSelected = (event) => {
+    handleSelected = (event:MouseEvent) => {
         event.preventDefault()
         if ($(event.target).hasClass('delete-btn'))
             return

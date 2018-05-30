@@ -11,7 +11,7 @@ import {
     DeleteTaskAction,
     AddTaskCommentAction,
     OtherAction
-} from '../actions';
+} from '../actions'
 
 import { List, Map } from 'immutable'
 

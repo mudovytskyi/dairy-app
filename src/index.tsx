@@ -19,10 +19,10 @@ import { getInitialState, updateStorage } from './services'
 // installDevTools(Immutable)
 
 /* 
-let Immutable = require("immutable");
+let Immutable = require("immutable")
  
-let installDevTools = require("immutable-devtools");
-installDevTools(Immutable); */
+let installDevTools = require("immutable-devtools")
+installDevTools(Immutable) */
 
 const reduxStore = configureStore(getInitialState())
 
