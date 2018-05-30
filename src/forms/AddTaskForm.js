@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Field, reduxForm } from 'redux-form/immutable'
 import { ADD_TASK_FORM_NAME } from '../constants/formNames'
 
-let AddTaskForm = props => {
+const AddTaskForm = props => {
     const { handleSubmit, handleSubmitFail, pristine, submitting } = props
     return (
         <Form onSubmit={handleSubmit} onSubmitFail={handleSubmitFail} className="AddTaskForm">

@@ -9,7 +9,7 @@ import { isCommentBarDisabledSelector } from '../../selectors'
 class AddCommentBar extends Component {
 
     handleSubmitFail = value => {
-        console.log("FAILED", value)
+        console.error("FAILED", value)
     }
 
     render() {

@@ -8,11 +8,11 @@
   },
   "author": "MykolaUdovytskyi",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
     "postbuild": "mv ./build/* ./docs",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   },
   "dependencies": {
     "immutable": "^3.8.2",
@@ -22,7 +22,7 @@
     "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts-ts": "^2.16.0",
     "react-scroll": "^1.7.8",
     "redux": "^4.0.0",
     "redux-form": "^7.3.0",
@@ -30,8 +30,14 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@types/node": "^10.1.3",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-redux": "^6.0.0",
+    "@types/redux-form": "^7.2.5",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "immutable-devtools": "^0.1.3",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "typescript": "^2.8.3"
   }
 }

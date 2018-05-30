@@ -12,7 +12,7 @@ class AddTaskBar extends Component {
     }
 
     handleSubmitFail2 = value => {
-        console.log("FAILED", value)
+        console.error("FAILED", value)
     }
 
     render() {
