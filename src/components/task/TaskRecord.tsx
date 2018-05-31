@@ -1,33 +1,32 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
-import { ITaskImmutable } from './ITask'
+import { ITask } from '../../models'
 
-export interface ITaskRecordProps extends ITaskImmutable {
-    onClick?: () => void,
-    onSelect?: () => void
+// @ts-ignore
+interface ITaskRecordProps extends ITask {
+    onClick: (id: number) => void,
+    onSelect: (id: number) => void,
+    comments: [string]
 }
 
-class TaskRecord extends Component<ITaskRecordProps> {
-    constructor(props:ITaskRecordProps) {
+class TaskRecord extends Component<ITaskRecordProps, any> {
+    constructor(props: ITaskRecordProps) {
         super(props)
+
+        this.handleClick = this.handleClick.bind(this)
+        this.handleSelected = this.handleSelected.bind(this)
     }
 
-    handleClick = () => {
+    protected handleClick = () => {
         this.props.onClick(this.props._id)
     }
 
-    handleSelected = (event:MouseEvent) => {
+    protected handleSelected = (event: any) => {
         event.preventDefault()
-        if ($(event.target).hasClass('delete-btn'))
-            return
-
-        $('.task-selected').removeClass('task-selected')
-        $(event.currentTarget).addClass('task-selected')
         this.props.onSelect(this.props._id)
     }
 
-    render() {
-       const {name, comments, selected} = this.props
+    public render() {
+        const { name, comments, selected } = this.props
         return (
             <li className={selected ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>
                 <div className="indicator" />

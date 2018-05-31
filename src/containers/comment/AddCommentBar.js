@@ -12,6 +12,8 @@ class AddCommentBar extends Component {
         console.error("FAILED", value)
     }
 
+
+
     render() {
         const { disabled } = this.props
         return (
