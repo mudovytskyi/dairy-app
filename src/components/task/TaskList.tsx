@@ -1,8 +1,7 @@
 import * as React from 'react'
 import TaskRecord from './TaskRecord'
 import { animateScroll } from 'react-scroll'
-import { List } from 'immutable'
-import { ITaskImmutable, ITask } from '../../models'
+import { ITask } from '../../models'
 import { ITaskListStateFromProps, ITaskListDispatchFromProps } from '../../containers/task/TaskListView';
 
 

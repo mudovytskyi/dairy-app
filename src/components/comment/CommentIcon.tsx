@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class CommentIcon extends Component {
-    render() {
+    public render() {
         return (
             <div className="CommentIcon">
                 <div className="placeholder-icon" />

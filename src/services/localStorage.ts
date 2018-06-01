@@ -1,12 +1,12 @@
 import { fromJS } from 'immutable'
-let localStorage
+let localStorage:any
 const STORAGE_NAME = 'storage'
 const LOCAL_STORAGE = 'localStorage'
 
-function storageAvailable(type) {
+function storageAvailable(type:string) {
+    const storage:any = window[type],
+        x = '__storage_test__'
     try {
-        var storage = window[type],
-            x = '__storage_test__'
         storage.setItem(x, x)
         storage.removeItem(x)
         return true
@@ -28,7 +28,7 @@ function storageAvailable(type) {
 }
 
 export function getInitialState() {
-    let initialData = { tasks: [] }
+    let initialData:object = { tasks: [] }
     if (storageAvailable(LOCAL_STORAGE)) {
         localStorage = window.localStorage
         initialData = fromJS(JSON.parse(localStorage.getItem(STORAGE_NAME)) || {})
@@ -36,7 +36,7 @@ export function getInitialState() {
     return fromJS(initialData)
 }
 
-export function updateStorage(currentState) {
+export function updateStorage(currentState:any) {
     if (storageAvailable(LOCAL_STORAGE)) {
         localStorage.setItem(STORAGE_NAME, JSON.stringify(currentState))
     } else {

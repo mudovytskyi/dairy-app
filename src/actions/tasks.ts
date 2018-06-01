@@ -1,31 +1,39 @@
 import { DairyAppAction } from '../constants/actionTypes';
-// import {
-//     ADD_TASK,
-//     SELECT_TASK,
-//     DELETE_TASK,
-// } from DairyAppAction
-import { ITask } from '../models/ITask'
-import { Map } from 'immutable'
 
 let nextTask = Date.now()
 
-//-----------------------------
-//
-//  TASKS
-//
-//-----------------------------
-export const addTask = (task: any) => ({
+const  {
+    ADD_TASK,
+    SELECT_TASK,
+    DELETE_TASK,
+} = DairyAppAction
+
+export interface IAddTaskAction {
     type: DairyAppAction.ADD_TASK,
-    name: task.name,
+    _id: number,
+    name: string,
+}
+export const addTask = (name: string):IAddTaskAction => ({
+    type: ADD_TASK,
     _id: nextTask++,
+    name,
 })
 
-export const selectTask = (id: number) => ({
+export interface ISelectTaskAction {
     type: DairyAppAction.SELECT_TASK,
+    _id: number,
+}
+export const selectTask = (id: number):ISelectTaskAction => ({
+    type: SELECT_TASK,
     _id: id,
 })
 
-export const deleteTask = (id: number) => ({
+
+export interface IDeleteTaskAction {
     type: DairyAppAction.DELETE_TASK,
+    _id: number,
+}
+export const deleteTask = (id: number):IDeleteTaskAction => ({
+    type: DELETE_TASK,
     _id: id,
 })

@@ -12,15 +12,15 @@ export const getSelectedTaskSelector = createSelector(
 
 export const isCommentBarDisabledSelector = createSelector(
     getSelectedTaskSelector,
-    (task:ITaskImmutable) => !Boolean(task)
+    (task:ITaskImmutable):boolean => !Boolean(task)
 )
 
 export const getSelectedTaskListPositionSelector = createSelector(
     [getSelectedTaskSelector, getTasksSelector],
-    (task:ITaskImmutable, tasks:List<ITaskImmutable>) => task ? tasks.indexOf(task) + 1 : ""
+    (task:ITaskImmutable, tasks:List<ITaskImmutable>):number | string => task ? tasks.indexOf(task) + 1 : ""
 )
 
 export const getSelectedTaskCommentsSelector = createSelector(
     getSelectedTaskSelector,
-    (task:ITaskImmutable) => task ? task.get('comments') : List([])
+    (task:ITaskImmutable):List<string> => (task) ? List(task.get('comments')) : List([])
 )

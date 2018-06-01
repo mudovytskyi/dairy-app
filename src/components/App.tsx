@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import './App.css'
-import AddTaskBar from '../containers/task/AddTaskBar'
+import AddTaskBarContainer from '../containers/task/AddTaskBarContainer'
 import TaskListView from '../containers/task/TaskListView'
 import CommentListView from '../containers/comment/CommentListView'
-import AddCommentBar from '../containers/comment/AddCommentBar'
+import AddCommentBarContainer from '../containers/comment/AddCommentBarContainer';
+import { IAppStateFromProps } from '../containers/AppContainer';
 
-class App extends Component {
- render() {
+export interface IAppProps extends IAppStateFromProps {}
+export interface IAppState {}
+
+class App extends React.Component<IAppProps, IAppState> {
+ public render() {
     return (
       <div className="App">
         <div className="DairyCover">
@@ -20,13 +24,13 @@ class App extends Component {
         <div className="DairyContent">
           <div className="TaskListView">
             <p className="App-title">Items</p>
-            <AddTaskBar />
+            <AddTaskBarContainer />
             <TaskListView />
           </div>
           <div className="CommentListView">
             <p className="App-title">Comments #{this.props.taskPosition}</p>
             <CommentListView />
-            <AddCommentBar />
+            <AddCommentBarContainer />
           </div>
         </div>
       </div>

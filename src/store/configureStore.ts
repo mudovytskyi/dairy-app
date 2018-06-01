@@ -3,5 +3,6 @@ import { devToolsEnhancer } from 'redux-devtools-extension'
 import rootReducer from '../reducers'
 import * as actionCreators from '../actions'
 
-export default configureStore = (initialState) =>
-    createStore(rootReducer, initialState, devToolsEnhancer({ actionCreators }))
+export default function configureStore (initialState:any) {
+    return createStore(rootReducer, initialState, devToolsEnhancer({ actionCreators }))
+}

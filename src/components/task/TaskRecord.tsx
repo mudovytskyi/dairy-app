@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { ITask } from '../../models'
 
-// @ts-ignore
 interface ITaskRecordProps extends ITask {
     onClick: (id: number) => void,
     onSelect: (id: number) => void,
-    comments: [string]
 }
 
 class TaskRecord extends Component<ITaskRecordProps, any> {

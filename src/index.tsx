@@ -24,7 +24,7 @@ let Immutable = require("immutable")
 let installDevTools = require("immutable-devtools")
 installDevTools(Immutable) */
 
-const reduxStore = configureStore(getInitialState())
+const reduxStore:any = configureStore(getInitialState())
 
 reduxStore.subscribe(() => updateStorage(reduxStore.getState()))
 
