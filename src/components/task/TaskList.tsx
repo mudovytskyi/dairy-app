@@ -5,13 +5,8 @@ import { ITask } from '../../models'
 import { ITaskListStateFromProps, ITaskListDispatchFromProps } from '../../containers/task/TaskListView';
 
 
-export interface ITaskListProps extends ITaskListStateFromProps, ITaskListDispatchFromProps {
-    
-}
-
-export interface ITaskListState {
-
-}
+export interface ITaskListProps extends ITaskListStateFromProps, ITaskListDispatchFromProps {}
+export interface ITaskListState {}
 
 export default class TaskList extends React.Component<ITaskListProps, ITaskListState> {
     public state: ITaskListState = {}
@@ -24,7 +19,7 @@ export default class TaskList extends React.Component<ITaskListProps, ITaskListS
         animateScroll.scrollToBottom({ containerId: 'container' })
     }
 
-    public render(): JSX.Element {
+    public render():JSX.Element {
         return (
             <nav>
                 <ul id='container' className="TaskList"> {

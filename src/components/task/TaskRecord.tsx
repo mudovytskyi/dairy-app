@@ -14,16 +14,16 @@ class TaskRecord extends Component<ITaskRecordProps, any> {
         this.handleSelected = this.handleSelected.bind(this)
     }
 
-    protected handleClick = () => {
+    protected handleClick = ():void => {
         this.props.onClick(this.props._id)
     }
 
-    protected handleSelected = (event: any) => {
+    protected handleSelected = (event: any):void => {
         event.preventDefault()
         this.props.onSelect(this.props._id)
     }
 
-    public render() {
+    public render():JSX.Element {
         const { name, comments, selected } = this.props
         return (
             <li className={selected ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>

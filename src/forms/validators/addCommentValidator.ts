@@ -1,7 +1,5 @@
-import { SubmissionError } from "redux-form/immutable"
-
-export default function addCommentValidator(model: any, onSubmit: any) {
-  const { comment } = model
+export default function addCommentValidator(model:any):any {
+  const comment = model.get('comment')
 
   const errors: { comment: string } = { comment: "" }
 
@@ -9,10 +7,5 @@ export default function addCommentValidator(model: any, onSubmit: any) {
     errors.comment = "Comment is required"
   }
 
-  if (errors.comment) {
-    alert(errors.comment)
-    throw new SubmissionError({
-      _error: "Validate Error"
-    })
-  } else onSubmit(model)
+  return errors
 }

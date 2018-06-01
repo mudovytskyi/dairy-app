@@ -4,8 +4,9 @@ import CommentIcon from './CommentIcon'
 interface ICommentRecordProps {
     value: string
 }
+
 class CommentRecord extends Component<ICommentRecordProps, any> {
-    public render() {
+    public render():JSX.Element {
         return (
             <li className="CommentRecord">
                 <CommentIcon />

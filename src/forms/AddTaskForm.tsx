@@ -4,9 +4,10 @@ import { addTaskValidator } from './validators'
 import { FormNames } from '../constants/formNames'
 
 const AddTaskForm = (props:any) => {
-    const { handleSubmit, onSubmit, handleSubmitFail, pristine, submitting } = props
+    const { handleSubmit, handleSubmitFail, pristine, submitting } = props
     return (
-        <Form onSubmit={handleSubmit((model: any) => addTaskValidator(model, onSubmit))} onSubmitFail={handleSubmitFail} className="AddTaskForm">
+        <Form onSubmit={handleSubmit} 
+                onSubmitFail={handleSubmitFail} className="AddTaskForm">
             <Field name="name" component="input" type="text"
                 placeholder="Type name here..." />
             <button type="submit" disabled={pristine || submitting}>Add new</button>
@@ -14,6 +15,7 @@ const AddTaskForm = (props:any) => {
     )
 }
 
-export default reduxForm({
+export default reduxForm<any, any>({
     form: FormNames.ADD_TASK_FORM_NAME,
+    validate: addTaskValidator
 })(AddTaskForm)

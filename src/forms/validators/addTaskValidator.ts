@@ -1,7 +1,5 @@
-import { SubmissionError } from "redux-form/immutable"
-
-export default function addTaskValidator(model: any, onSubmit: any) {
-  const { name } = model
+export const addTaskValidator = (model: any):any => {
+  const name = model.get('name')
 
   const errors: { name?: string } = {}
 
@@ -9,10 +7,5 @@ export default function addTaskValidator(model: any, onSubmit: any) {
     errors.name = "Task name is required"
   }
 
-  if (errors.name) {
-    alert(errors.name)
-    throw new SubmissionError({
-      _error: "Validate Error"
-    })
-  } else onSubmit(model)
+  return errors
 }

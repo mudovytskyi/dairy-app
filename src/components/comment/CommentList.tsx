@@ -8,11 +8,11 @@ export interface ICommentsListState {}
 
 class CommentList extends React.Component<ICommentsListProps, ICommentsListState> {
 
-    public componentDidUpdate() {
+    public componentDidUpdate():void {
         animateScroll.scrollToBottom({ containerId: 'containerComments' })
     }
 
-    public render() {
+    public render():JSX.Element {
         const { comments } = this.props
 
         if (comments) {

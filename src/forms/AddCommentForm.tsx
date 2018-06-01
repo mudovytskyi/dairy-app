@@ -65,13 +65,13 @@ class AddCommentForm extends React.Component<any, any> {
     }
 
     public render() {
-        const { handleSubmit, onSubmit, handleSubmitFail, disabled } = this.props
+        const { handleSubmit, handleSubmitFail, disabled } = this.props
         // onSubmit={handleSubmit(remoteSubmit)}>
         return (
             <Form className="AddCommentForm"
                 onKeyPress={this.handleKeyPress}
                 onSubmitFail={handleSubmitFail}
-                onSubmit={handleSubmit((model: any) => addCommentValidator(model, onSubmit))}>
+                onSubmit={handleSubmit}>
 
                 <CommentIcon />
                 <Field name="comment"
@@ -97,5 +97,5 @@ class AddCommentForm extends React.Component<any, any> {
 
 export default reduxForm<any, any>({
     form: FormNames.ADD_COMMENT_FORM_NAME,
-    // validate: addCommentValidator,
+    validate: addCommentValidator,
 })(AddCommentForm)
