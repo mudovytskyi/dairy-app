@@ -1,3 +1,3 @@
 declare module 'immutable-devtools' {
-    export type installDevTools = Function
+    export function installDevTools(param:any):void
 }
