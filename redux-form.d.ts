@@ -1,6 +1,6 @@
-import * as reduxForm from 'redux-form/immutable';
+import * as reduxForm from 'redux-form/immutable'
 
 declare module 'redux-form/immutable' {
-  export const reset: any
+  export function reset(formName: any):any
   export const Form: any
 }
