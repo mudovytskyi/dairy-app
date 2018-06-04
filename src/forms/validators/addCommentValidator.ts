@@ -1,6 +1,6 @@
-export default function addCommentValidator(model:any):any {
-  const comment = model.get('comment')
-
+export default function addCommentValidator(model: any): any {
+  
+  const comment = model.get("comment")
   const errors: { comment: string } = { comment: "" }
 
   if (!comment) {

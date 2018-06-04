@@ -1,6 +1,5 @@
-export const addTaskValidator = (model: any):any => {
-  const name = model.get('name')
-
+export const addTaskValidator = (model: any): any => {
+  const name = model.get("name")
   const errors: { name?: string } = {}
 
   if (!name) {
