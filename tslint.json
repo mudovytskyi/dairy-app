@@ -6,14 +6,19 @@
       "node_modules/**/*.ts"
     ]
   },
+  
   "rules": {
     "object-literal-sort-keys": false,
     "curly": false,
     "no-console": [true, "log"],
     "ordered-imports": false,
     "one-variable-per-declaration": false,
-    "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case", "allow-snake-case"]
+    "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case", "allow-snake-case"],
+    "member-ordering": false,
+    "no-empty-interface": false
+
   },
+
   "jsRules": {
     "object-literal-sort-keys": false,
     "curly": false,

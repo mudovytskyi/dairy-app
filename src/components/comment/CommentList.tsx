@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import ImmutablePropTypes from 'react-immutable-proptypes'
+import * as React from 'react'
 import CommentRecord from './CommentRecord'
 import { animateScroll } from 'react-scroll'
-import { List } from 'immutable'
+import { ICommentsListStateFromProps } from '../../containers/comment/CommentListView';
 
-class CommentList extends Component {
+export interface ICommentsListProps extends ICommentsListStateFromProps {}
+export interface ICommentsListState {}
 
-    componentDidUpdate() {
+class CommentList extends React.Component<ICommentsListProps, ICommentsListState> {
+
+    public componentDidUpdate():void {
         animateScroll.scrollToBottom({ containerId: 'containerComments' })
     }
 
-    render() {
-        let { comments } = this.props
+    public render():JSX.Element {
+        const { comments } = this.props
 
         if (comments) {
             return (
@@ -31,10 +32,6 @@ class CommentList extends Component {
             )
         }
     }
-}
-
-CommentList.propTypes = {
-    comments: ImmutablePropTypes.listOf(PropTypes.string)
 }
 
 export default CommentList

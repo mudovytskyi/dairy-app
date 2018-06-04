@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
+import { ITask } from '../../models'
 
-class TaskRecord extends Component {
+interface ITaskRecordProps extends ITask {
+    onClick: (id: number) => void,
+    onSelect: (id: number) => void,
+}
 
-    handleClick = () => {
+class TaskRecord extends Component<ITaskRecordProps, any> {
+    constructor(props: ITaskRecordProps) {
+        super(props)
+
+        this.handleClick = this.handleClick.bind(this)
+        this.handleSelected = this.handleSelected.bind(this)
+    }
+
+    protected handleClick = ():void => {
         this.props.onClick(this.props._id)
     }
 
-    handleSelected = (event) => {
+    protected handleSelected = (event: any):void => {
         event.preventDefault()
-        if ($(event.target).hasClass('delete-btn'))
-            return
-
-        $('.task-selected').removeClass('task-selected')
-        $(event.currentTarget).addClass('task-selected')
         this.props.onSelect(this.props._id)
     }
 
-    render() {
-       const {name, comments, selected} = this.props
+    public render():JSX.Element {
+        const { name, comments, selected } = this.props
         return (
             <li className={selected ? "TaskRecord task-selected" : "TaskRecord"} onClick={this.handleSelected}>
                 <div className="indicator" />

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import CommentIcon from './CommentIcon'
 
-class CommentRecord extends Component {
-    render() {
+interface ICommentRecordProps {
+    value: string
+}
+
+class CommentRecord extends Component<ICommentRecordProps, any> {
+    public render():JSX.Element {
         return (
             <li className="CommentRecord">
                 <CommentIcon />
