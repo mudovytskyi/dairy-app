@@ -22,7 +22,7 @@ import axios from 'axios'
 //   });
 
 // Want to use async/await? Add the `async` keyword to your outer function/method.
-export async function getDataAction(url:string, params:{}) {
+export async function getDataAction(url:string, params:{} = {}) {
   try {
     const response = await axios.get(url, params)
     console.log(response);

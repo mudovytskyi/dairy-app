@@ -5,7 +5,8 @@ import rootReducer from '../reducers'
 import * as actionCreators from '../actions'
 import sagas from '../sagas'
 import initialState, {updateStorage} from '../services'
-import IStoreState from './IStoreState';
+import IStoreState from '../reducers/IStoreState';
+// import { initStore } from '../actions/init';
 
 
 const composeEnhancers:any = composeWithDevTools({
@@ -20,7 +21,7 @@ const composeEnhancers:any = composeWithDevTools({
         // return createStore(rootReducer, initialState, devToolsEnhancer({ actionCreators /* , serialize:{options:{undefined: true,
     // function: 'function(fn:any) { return fn.toString() }'}} */}))
     // const store:Store<IStoreState> = createStore(rootReducer, initialState!, compose(
-    const store:Store<IStoreState> = createStore(rootReducer, initialState!, composeEnhancers(
+    const store:Store<IStoreState> = createStore(rootReducer, initialState, composeEnhancers(
         applyMiddleware(sagaMiddleware)
     ))
     store.subscribe(() => updateStorage(store.getState()))

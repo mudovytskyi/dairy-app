@@ -1,52 +1,51 @@
-import { takeEvery, put, call, all, select } from 'redux-saga/effects';
-import { IAddTaskAction } from "../actions/tasks"
+import { takeEvery, put, call, all, select } from "redux-saga/effects"
+import { ISelectTaskAction } from '../actions/tasks';
 import { DairyAppAction } from "../constants/actionTypes"
-import {postDataAction, patchDataAction} from "../common/axios"
+import {patchDataAction} from "../common/axios"
 import apiUrlsConsts from "../constants/apiUrlsConsts";
-import { Task } from '../models/ITask';
-import { ITaskImmutable } from '../models/ITaskImmutable';
+// import { Task } from '../models/ITask';
 import { getSelectedTaskSelector } from '../selectors/index';
+import { ITaskImmutable } from '../models/ITaskImmutable';
 
 const  {    
-    ADD_TASK,
-    ADD_TASK_REQUEST,
-    ADD_TASK_SUCCESS,
-    ADD_TASK_ERROR,
+    SELECT_TASK,
+    SELECT_TASK_REQUEST,
+    SELECT_TASK_SUCCESS,
+    SELECT_TASK_ERROR,
 } = DairyAppAction
 
-function *runAddTask(action: IAddTaskAction) {
+function *runSelectTask(action: ISelectTaskAction) {
 
     console.log("A", action)
-
-    const taskSelected:ITaskImmutable = yield select(getSelectedTaskSelector)
+        const taskSelected:ITaskImmutable = yield select(getSelectedTaskSelector)
         if (taskSelected)
-            yield call(patchDataAction, 
-                apiUrlsConsts.TASK,
-                {id: taskSelected.get('id'),
-                selected: false})
+        yield call(patchDataAction, 
+            apiUrlsConsts.TASK,
+            {id: taskSelected.get('id'),
+            selected: false})
 
         const {response, error} = yield call(
-            // @ts-ignore
-            postDataAction, 
-            apiUrlsConsts.TASKS,
-           new Task(Date.now(), action.name, true)
+            patchDataAction, 
+            apiUrlsConsts.TASK,
+            {id: action.id,
+            selected: true}
         )
         console.log("R", response, error)
         if (response)
             yield all({
 
                success: yield put({
-                    type: ADD_TASK_SUCCESS,
+                    type: SELECT_TASK_SUCCESS,
                     response
                 }),
-                newTask: yield put({
-                    type: ADD_TASK,
+                selectTask: yield put({
+                    type: SELECT_TASK,
                     task: response.data
                 })
             })
         else 
             yield put({
-                type: ADD_TASK_ERROR,
+                type: SELECT_TASK_ERROR,
                 error
             })
     // try {
@@ -68,6 +67,6 @@ function *runAddTask(action: IAddTaskAction) {
     // }
 }
 
-export default function *addTaskSaga() {
-  yield takeEvery(ADD_TASK_REQUEST, runAddTask)
+export default function *selectTaskSaga() {
+  yield takeEvery(SELECT_TASK_REQUEST, runSelectTask)
 }

@@ -24,9 +24,9 @@ export default class TaskList extends React.Component<ITaskListProps, ITaskListS
             <nav>
                 <ul id='container' className="TaskList"> {
                     this.props.tasks.map((task:ITask) =>
-                        <TaskRecord key={task._id} {...task}
-                            onClick={this.props.deleteTask.bind(this, task._id)}
-                            onSelect={this.props.selectTask.bind(this, task._id)}
+                        <TaskRecord key={task.id} {...task}
+                            onClick={this.props.deleteTask.bind(this, task.id)}
+                            onSelect={this.props.selectTask.bind(this, task.id)}
                         />
                     )
                 }

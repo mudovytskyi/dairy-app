@@ -1,4 +1,6 @@
 import { fromJS } from 'immutable'
+import initialState from '../reducers/initialState';
+// import axios from 'axios';
 let localStorage:any
 const STORAGE_NAME = 'storage'
 const LOCAL_STORAGE = 'localStorage'
@@ -26,20 +28,30 @@ function storageAvailable(type:string) {
             storage.length !== 0
     }
 }
+// const fetchData = async () => {
+//     const tasks:any = await axios("http://localhost:3001/tasks")
+//     return await tasks.data
+// }
 
 export function getInitialState() {
-    let initialData:object = { tasks: [] }
+    let initialData:{} = initialState
     if (storageAvailable(LOCAL_STORAGE)) {
         localStorage = window.localStorage
-        initialData = fromJS(JSON.parse(localStorage.getItem(STORAGE_NAME)) || {})
+        initialData = JSON.parse(localStorage.getItem(STORAGE_NAME)) || {}
+        // const f = async () => await fetch("http://localhost:3001/tasks")
         
-        // initialData = fetch("http://localhost:3001/tasks")
-        //     .then((tasksJSON:Response):any => tasksJSON.json())
-        //     .then((json:any):any => json)
-        //     // initialData = fromJS(initialData)
-        // console.debug("initData", initialData)
-    }
-    return fromJS(initialData)
+        // .then((tasksJSON:AxiosResponse<any>):any => { initialData = tasksJSON.data, console.log("RE", initialData)})
+        // initialData = fromJS(initialData)
+    //    initialData = fetchData()
+        // console.log("initData", initialData)
+        // return fromJS(initialData)
+        // } else { 
+
+    }    
+        console.log("initData2", initialData)
+        
+        return fromJS(initialData)
+    // }
 }
 
 export function updateStorage(currentState:any) {

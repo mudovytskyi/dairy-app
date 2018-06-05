@@ -8,7 +8,9 @@ import { Provider } from "react-redux"
 
 // add separate storage logic
 import reduxStore from "./store"
+// import { initStore } from './actions/init';
 
+// reduxStore.dispatch(initStore(reduxStore.dispatch))
 // move localStorage to services
 // import { getInitialState, updateStorage } from "./services"
 

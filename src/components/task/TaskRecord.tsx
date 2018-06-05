@@ -15,12 +15,12 @@ class TaskRecord extends Component<ITaskRecordProps, any> {
     }
 
     protected handleClick = ():void => {
-        this.props.onClick(this.props._id)
+        this.props.onClick(this.props.id)
     }
 
     protected handleSelected = (event: any):void => {
         event.preventDefault()
-        this.props.onSelect(this.props._id)
+        this.props.onSelect(this.props.id)
     }
 
     public render():JSX.Element {

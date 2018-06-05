@@ -9,11 +9,13 @@ const {
 } = DairyAppAction
 
 import {
-    IAddTaskAction,
+    // IAddTaskAction,
     IAddTaskResponseAction,
-    ISelectTaskAction,
+    // ISelectTaskAction,
+    ISelectTaskResponseAction,
     IDeleteTaskAction,
-    IAddTaskCommentAction,
+    // IAddTaskCommentAction,
+    IAddTaskCommentResponseAction,
     IOtherAction
 } from '../actions'
 
@@ -22,11 +24,13 @@ import { ITaskImmutable } from '../models/ITaskImmutable';
 // import { Task } from '../models/ITask';
 
 type TaskAction =
-    IAddTaskAction |
+    // IAddTaskAction |
     IAddTaskResponseAction |
-    ISelectTaskAction |
+    // ISelectTaskAction |
+    ISelectTaskResponseAction |
     IDeleteTaskAction |
-    IAddTaskCommentAction |
+    // IAddTaskCommentAction |
+    IAddTaskCommentResponseAction |
     IOtherAction
 
     const tasks = (state:List<ITaskImmutable> = List([]), action:TaskAction = {type:OTHER_TYPE}) => {
@@ -35,23 +39,23 @@ type TaskAction =
             return state
             .map((task:ITaskImmutable) => task.update('selected', selected => false))
                 // @ts-ignore
-                .push(Map(/* {
-                    _id: action._id,
-                    name: action.name,
-                    selected: true,
+                .push(Map({
+                    id:  action.task.id,
+                    name:  action.task.name,
+                    selected:  action.task.selected,
                     comments: List([])
-                } *//* new Task(action._id, action.name, true) */
-            action.task))
+                } /* new Task(action.id, action.name, true)
+           /*  action.task */))
 
         case SELECT_TASK:
             return state
                 .map((task:ITaskImmutable) => {
-                    const _id:number = task.get('_id'),
-                        _actId:number = action._id,
+                    const id:number = task.get('id'),
+                        _actId:number = action.task.id,
                         _selected:boolean = task.get('selected')
 
-                    if (!_selected && _id === _actId ||
-                        _selected && _id !== _actId) {
+                    if (!_selected && id === _actId ||
+                        _selected && id !== _actId) {
                         task = task.update('selected', selected => !_selected)
                     }
 
@@ -60,14 +64,17 @@ type TaskAction =
 
         case DELETE_TASK:
             return state.filter((task:ITaskImmutable, index:number, array) =>
-                task.get('_id') !== action._id
+                task.get('id') !== action.id
             )
 
         case ADD_COMMENT:
-            return state.map((task:ITaskImmutable) =>
-                (task.get('selected'))
-                    ? task.update('comments', comments => comments.push(action.comment))
-                    : task
+        console.log("COM", action, action.comment)
+            return state.map((task:ITaskImmutable) => {
+                console.log("TC", task.get('name'), task.get('comments'))
+               return (task.get('selected'))
+                ? task.update('comments', comments => comments.push(action.comment))
+                : task
+            }
             )
 
         default:
