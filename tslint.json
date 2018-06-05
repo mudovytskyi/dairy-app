@@ -15,8 +15,8 @@
     "one-variable-per-declaration": false,
     "variable-name": [true, "allow-leading-underscore", "allow-trailing-underscore", "allow-pascal-case", "allow-snake-case"],
     "member-ordering": false,
-    "no-empty-interface": false
-
+    "no-empty-interface": false,
+    "no-shadowed-variable": false
   },
 
   "jsRules": {

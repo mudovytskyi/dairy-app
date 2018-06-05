@@ -5,8 +5,19 @@ import {
     combineReducers
 } from 'redux-immutable'
 
+
+import * as asyncInitialState from 'redux-async-initial-state'
 const StateRecord = Record({ tasks: List([]) })
-export default combineReducers({
+
+const asyncReducer = asyncInitialState.outerReducer(combineReducers({
     tasks,
-    form: formReducer
-}, StateRecord)
+    form: formReducer,
+    asyncInitialState: asyncInitialState.innerReducer
+}, StateRecord))
+
+export default asyncReducer
+
+// export default combineReducers({
+//     tasks,
+//     form: formReducer
+// }, StateRecord)
