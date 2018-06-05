@@ -1,5 +1,5 @@
 
-import { DairyAppAction } from '../constants/actionTypes';
+import { DairyAppAction } from '../constants/actionTypes'
 const {
     OTHER_TYPE,
 } = DairyAppAction

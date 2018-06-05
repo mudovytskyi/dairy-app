@@ -1,4 +1,4 @@
-import { DairyAppAction } from '../constants/actionTypes';
+import { DairyAppAction } from '../constants/actionTypes'
 
 const {
     ADD_TASK,
@@ -20,8 +20,8 @@ import {
 } from '../actions'
 
 import { List, Map } from 'immutable'
-import { ITaskImmutable } from '../models/ITaskImmutable';
-// import { Task } from '../models/ITask';
+import { ITaskImmutable } from '../models/ITaskImmutable'
+// import { Task } from '../models/ITask'
 
 type TaskAction =
     // IAddTaskAction |

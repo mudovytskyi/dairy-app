@@ -3,7 +3,7 @@ import { selectTask, deleteTask } from '../../actions'
 import { getTasksSelector } from '../../selectors'
 import TaskList from '../../components/task/TaskList'
 import { Dispatch } from '../../../redux'
-import { ITaskListState } from '../../components/task/TaskList';
+import { ITaskListState } from '../../components/task/TaskList'
 import { ITask } from '../../models/ITask'
 
 export interface ITaskListStateFromProps {
@@ -27,5 +27,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect<ITaskListStateFromProps, ITaskListDispatchFromProps, void>(
     mapStateToProps,
     mapDispatchToProps,
-    // mergeProps
 )(TaskList)

@@ -21,8 +21,6 @@ export enum DairyAppAction {
   ADD_COMMENT_SUCCESS = '@@dairy-app/comment/ADD_COMMENT_SUCCESS',
   ADD_COMMENT_ERROR = '@@dairy-app/comment/ADD_COMMENT_ERROR',
 
-  // init store
-  INIT_STORE = '@@dairy-app/INIT_STORE',
   // other
   OTHER_TYPE = '@@dairy-app/OTHER_TYPE',
 }

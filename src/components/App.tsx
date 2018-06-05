@@ -3,8 +3,8 @@ import './App.css'
 import AddTaskBarContainer from '../containers/task/AddTaskBarContainer'
 import TaskListView from '../containers/task/TaskListView'
 import CommentListView from '../containers/comment/CommentListView'
-import AddCommentBarContainer from '../containers/comment/AddCommentBarContainer';
-import { IAppStateFromProps } from '../containers/AppContainer';
+import AddCommentBarContainer from '../containers/comment/AddCommentBarContainer'
+import { IAppStateFromProps } from '../containers/AppContainer'
 
 export interface IAppProps extends IAppStateFromProps {}
 export interface IAppState {}

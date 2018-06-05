@@ -1,5 +1,5 @@
-import { ITask } from './ITask';
-import { ITaskImmutable } from './ITaskImmutable';
+import { ITask } from './ITask'
+import { ITaskImmutable } from './ITaskImmutable'
 
 export {
     ITask,

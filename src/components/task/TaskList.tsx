@@ -2,7 +2,7 @@ import * as React from 'react'
 import TaskRecord from './TaskRecord'
 import { animateScroll } from 'react-scroll'
 import { ITask } from '../../models'
-import { ITaskListStateFromProps, ITaskListDispatchFromProps } from '../../containers/task/TaskListView';
+import { ITaskListStateFromProps, ITaskListDispatchFromProps } from '../../containers/task/TaskListView'
 
 
 export interface ITaskListProps extends ITaskListStateFromProps, ITaskListDispatchFromProps {}

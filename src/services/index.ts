@@ -1,5 +1,4 @@
-import { getInitialState } from '.';
-// import IStoreState from '../store/IStoreState';
+import { getInitialState } from '.'
 
 export * from './localStorage'
 

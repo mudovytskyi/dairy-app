@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { List } from 'immutable'
-import { ITaskImmutable } from '../models';
+import { ITaskImmutable } from '../models'
 
 export const getTasksSelector = (state:any):List<ITaskImmutable> => state.get('tasks')
 

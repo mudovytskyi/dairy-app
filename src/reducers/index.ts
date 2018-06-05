@@ -16,8 +16,3 @@ const asyncReducer = asyncInitialState.outerReducer(combineReducers({
 }, StateRecord))
 
 export default asyncReducer
-
-// export default combineReducers({
-//     tasks,
-//     form: formReducer
-// }, StateRecord)

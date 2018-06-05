@@ -1,7 +1,7 @@
 import * as React from 'react'
 import CommentRecord from './CommentRecord'
 import { animateScroll } from 'react-scroll'
-import { ICommentsListStateFromProps } from '../../containers/comment/CommentListView';
+import { ICommentsListStateFromProps } from '../../containers/comment/CommentListView'
 
 export interface ICommentsListProps extends ICommentsListStateFromProps {}
 export interface ICommentsListState {}
