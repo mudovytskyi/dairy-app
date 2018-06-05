@@ -4,10 +4,9 @@ import { addTaskValidator } from './validators'
 import { FormNames } from '../constants/formNames'
 
 const AddTaskForm = (props:any) => {
-    const { handleSubmit, handleSubmitFail, pristine, submitting } = props
+    const { handleSubmit, pristine, submitting } = props
     return (
-        <Form onSubmit={handleSubmit} 
-                onSubmitFail={handleSubmitFail} className="AddTaskForm">
+        <Form onSubmit={handleSubmit}  className="AddTaskForm">
             <Field name="name" component="input" type="text"
                 placeholder="Type name here..." />
             <button type="submit" disabled={pristine || submitting}>Add new</button>

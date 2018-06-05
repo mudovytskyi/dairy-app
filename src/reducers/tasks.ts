@@ -10,6 +10,7 @@ const {
 
 import {
     IAddTaskAction,
+    IAddTaskResponseAction,
     ISelectTaskAction,
     IDeleteTaskAction,
     IAddTaskCommentAction,
@@ -18,9 +19,11 @@ import {
 
 import { List, Map } from 'immutable'
 import { ITaskImmutable } from '../models/ITaskImmutable';
+// import { Task } from '../models/ITask';
 
 type TaskAction =
     IAddTaskAction |
+    IAddTaskResponseAction |
     ISelectTaskAction |
     IDeleteTaskAction |
     IAddTaskCommentAction |
@@ -32,12 +35,13 @@ type TaskAction =
             return state
             .map((task:ITaskImmutable) => task.update('selected', selected => false))
                 // @ts-ignore
-                .push(Map({
+                .push(Map(/* {
                     _id: action._id,
                     name: action.name,
                     selected: true,
                     comments: List([])
-                }))
+                } *//* new Task(action._id, action.name, true) */
+            action.task))
 
         case SELECT_TASK:
             return state

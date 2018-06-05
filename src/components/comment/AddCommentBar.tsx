@@ -11,14 +11,10 @@ class AddCommentBar extends React.Component<IAddCommentBarProps, IAddCommentBarS
         this.props.addComment(value.get('comment'))
     }
 
-    protected handleSubmitFail = (value:any):void => {
-        console.error("FAILED", value)
-    }
-
     public render():JSX.Element {
         const { disabled } = this.props
         return (
-            <AddCommentForm disabled={disabled} onSubmit={this.handleSubmit} onSubmitFail={this.handleSubmitFail} />
+            <AddCommentForm disabled={disabled} onSubmit={this.handleSubmit} />
         )
     }
 }

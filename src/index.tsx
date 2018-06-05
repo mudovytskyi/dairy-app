@@ -7,19 +7,16 @@ import AppContainer from "./containers/AppContainer"
 import { Provider } from "react-redux"
 
 // add separate storage logic
-import configureStore from "./store/configureStore"
+import reduxStore from "./store"
 
 // move localStorage to services
-import { getInitialState, updateStorage } from "./services"
+// import { getInitialState, updateStorage } from "./services"
 
 // add immutable
 // import Immutable from "immutable"
 // import { installDevTools } from "immutable-devtools"
 // installDevTools(Immutable)
 
-const reduxStore: any = configureStore(getInitialState())
-
-reduxStore.subscribe(() => updateStorage(reduxStore.getState()))
 
 ReactDOM.render(
   <Provider store={reduxStore}>

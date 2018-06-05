@@ -27,17 +27,17 @@ function storageAvailable(type:string) {
     }
 }
 
-export async function getInitialState() {
+export function getInitialState() {
     let initialData:object = { tasks: [] }
     if (storageAvailable(LOCAL_STORAGE)) {
         localStorage = window.localStorage
-        // initialData = fromJS(JSON.parse(localStorage.getItem(STORAGE_NAME)) || {})
+        initialData = fromJS(JSON.parse(localStorage.getItem(STORAGE_NAME)) || {})
         
-        initialData = fetch("http://localhost:3001/tasks")
-            .then((tasksJSON:Response):any => tasksJSON.json())
-            .then((json:any):any => json)
-            // initialData = fromJS(initialData)
-        console.debug("initData", initialData)
+        // initialData = fetch("http://localhost:3001/tasks")
+        //     .then((tasksJSON:Response):any => tasksJSON.json())
+        //     .then((json:any):any => json)
+        //     // initialData = fromJS(initialData)
+        // console.debug("initData", initialData)
     }
     return fromJS(initialData)
 }

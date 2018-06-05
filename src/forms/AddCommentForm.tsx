@@ -65,12 +65,11 @@ class AddCommentForm extends React.Component<any, any> {
     }
 
     public render() {
-        const { handleSubmit, handleSubmitFail, disabled } = this.props
+        const { handleSubmit, disabled } = this.props
         // onSubmit={handleSubmit(remoteSubmit)}>
         return (
             <Form className="AddCommentForm"
                 onKeyPress={this.handleKeyPress}
-                onSubmitFail={handleSubmitFail}
                 onSubmit={handleSubmit}>
 
                 <CommentIcon />

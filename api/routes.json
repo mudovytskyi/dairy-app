@@ -1,7 +1,7 @@
 {
   "/api/*": "/$1",
   "/:tasks/:id/show": "/:tasks/:id",
-  "/:tasks/:id/?comments": "/:tasks/:id/name",
+  "/:tasks/:id/?comments": "/:tasks/:id.name",
   "/tasks": "/tasks?_sort=id&_order=asc",
   "/comments\\?id=:id": "/posts/:id.comments"
 }

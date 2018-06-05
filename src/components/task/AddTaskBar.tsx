@@ -9,20 +9,20 @@ class AddTaskBar extends React.Component<IAddTaskBarProps, any> {
     constructor(props:IAddTaskBarProps) {
         super(props)
         this.handleSubmit.bind(this)
-        this.handleSubmitFail.bind(this)
+        // this.handleSubmitFail.bind(this)
     }
 
     protected handleSubmit = (value:Map<string, any>):void => {
         this.props.addTask(value.get('name'))
     }
 
-    protected handleSubmitFail = (value:any):void => {
-        console.error("FAILED", value)
-    }
+    // protected handleSubmitFail = (value:any):void => {
+    //     console.error("FAILED", value)
+    // }
 
     public render():JSX.Element {
         return (
-            <AddTaksForm onSubmit={this.handleSubmit} onSubmitFail={this.handleSubmitFail} />
+            <AddTaksForm onSubmit={this.handleSubmit}/>
         )
     }
 }
